@@ -18,7 +18,7 @@ type Point3D = {x: Int32, y: Int32, z: Int32}
 ### Tagged unions (enums)
 
 ```
-enum Points = {
+type Points = {
   case D2: Point2D
   case D3: Point3D
 }
