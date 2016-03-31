@@ -102,7 +102,7 @@ let point2DWithMagic = (p: {x: Int32, y: Int32}): Magic32 = {
 }
 
 func main() {
-  let lala = {42, 18};
+  let lala = {x:42, y:18};
   let theSum = point2DWithSum(lala).sum();
   let theMagic = point2DWithMagic(lala).magic();
 }
