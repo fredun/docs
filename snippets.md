@@ -8,14 +8,14 @@
 type XY = (Int32, Int32)
 ```
 
-### Structural types (records)
+### Tagged product types (records)
 
 ```
 type Point2D = {x: Int32, y: Int32}
 type Point3D = {x: Int32, y: Int32, z: Int32}
 ```
 
-### Tagged Unions (enums)
+### Tagged unions (enums)
 
 ```
 enum Points = {
