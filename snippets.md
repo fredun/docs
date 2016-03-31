@@ -78,7 +78,7 @@ let point2DWithSum = (p: {x: Int32, y: Int32}): Sum32 => {
   sum: () => x + y
 }
 
-let point2DWithMagic = (p: {x: Int32, y: Int32}): Sum32 = {
+let point2DWithMagic = (p: {x: Int32, y: Int32}): Magic32 = {
   magic: () => x * 2 + y * 2
 }
 
