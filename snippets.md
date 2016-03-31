@@ -13,8 +13,8 @@ type Point3D = {x: Int32, y: Int32, z: Int32}
 
 ```
 enum Points = {
-  case D2(Point2D),
-  case D3(Point3D)
+  case D2: Point2D
+  case D3: Point3D
 }
 ```
 
