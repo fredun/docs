@@ -24,6 +24,9 @@ General ideas:
 - Higher-Kinded Types (Bonus item!)
 - No type coercion, not even in simple cases like `5 + 1.0`
 
+For inspiration and reference:
+- https://github.com/sinelaw/infernu/blob/master/docs/type-system.md
+
 ## Syntax
 
 - Everything (most things, anyway) are expressions:
