@@ -25,6 +25,7 @@ General ideas:
 - No type coercion, not even in simple cases like `5 + 1.0`
 
 For inspiration and reference:
+- https://brianmckenna.org/blog/row_polymorphism_isnt_subtyping
 - https://github.com/sinelaw/infernu/blob/master/docs/type-system.md
 
 ## Syntax
