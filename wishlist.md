@@ -27,6 +27,7 @@ General ideas:
 For inspiration and reference:
 - https://github.com/puffnfresh/roy
 - https://brianmckenna.org/blog/row_polymorphism_isnt_subtyping
+- https://github.com/KMahoney/StrictScript
 - https://github.com/sinelaw/infernu/blob/master/docs/type-system.md
 
 ## Syntax
