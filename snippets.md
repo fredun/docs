@@ -28,7 +28,16 @@ type Point3D = {x: Int32, y: Int32, z: Int32}
 
 let p = {x: 1, y: 2}
 let {x: Int32, y: Int32} = p
+
+type AtLeast2D = {x: Int32, y: Int32, ...z}
+
+let p2 = {x: 1, y: 2, a: 'foo', b: 'bar'}
+let {x: Int32, y: Int32, ...z} = p2
 ```
+
+(row polymorphism syntax oriented on https://github.com/sebmarkbage/ecmascript-rest-spread)
+
+*TODO:* Biggest problem at the moment, ambiguity between `:` as both a value-type separator and a key-value separator. Elm for instance has `:` as a value-type separator and `=` as a key-value separator. PureScipt has `::` as a value-type separator and `:` as a key-value separator.
 
 ### Tagged unions (enums)
 
