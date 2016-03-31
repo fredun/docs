@@ -2,6 +2,15 @@
 
 ## Type System
 
+### Primitive Types
+ - Unit
+ - Boolean
+ - [U]Int[8, 16, 32, 64]
+ - Float, Double (or Float[32, 64]? or Double[32, 64]?)
+ - Array<primitive type> ?
+ - Char ?
+ - String ?
+
 ### Simple product types (tuples)
 
 ```
