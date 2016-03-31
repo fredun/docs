@@ -14,6 +14,7 @@ General ideas:
 - Strong, sane type system
 - Awesome type inference
 - Mandate type annotations on top-level functions?
+- Support structural and nominal types (Elm and PureScript as examples)
 - Higher-Kinded Types (Bonus item!)
 
 ## Syntax
