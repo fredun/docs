@@ -66,17 +66,25 @@ func main() {
 alternative:
 
 ```
-behaviour Point2DWithSum({x: Int32, y: Int32}) {
-  func sum() = x + y
+interface Sum32 {
+  sum(): Int32
 }
 
-behaviour Point2DWithMagic({x: Int32, y: Int32}) {
-  func magic() = x * 2 + y * 2
+interface Magic32 {
+  magic(): Int32
+}
+
+let point2DWithSum = (p: {x: Int32, y: Int32}): Sum32 => {
+  sum: () => x + y
+}
+
+let point2DWithMagic = (p: {x: Int32, y: Int32}): Sum32 = {
+  magic: () => x * 2 + y * 2
 }
 
 func main() {
   let lala = {42, 18};
-  let theSum = Point2DWithSum(lala).sum();
-  let theMagic = Point2DWithMagic(lala).magic();
+  let theSum = point2DWithSum(lala).sum();
+  let theMagic = point2DWithMagic(lala).magic();
 }
 ```
