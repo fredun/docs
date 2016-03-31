@@ -18,6 +18,7 @@ General ideas:
 - Support structural and nominal types (Elm and PureScript as examples)
 - Parametric Polymorphism
 - Higher-Kinded Types (Bonus item!)
+- No type coercion, not even in simple cases like `5 + 1.0`
 
 ## Syntax
 
