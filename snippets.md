@@ -15,13 +15,14 @@ addXAndY = (p) => p.x + p.y
 ```
 or:
 ```
-addXAndY : Point32 => Int32 = (p) => p.x + p.y
+addXAndY : Point32 => Int32 =
+  (p) => p.x + p.y
 ```
 
 ```
-sum : List[Int32] => Int32
-sum = (list) => match(list) {
-  case List.Nil: 0
-  case List.Cons(x, xs): x + sum(xs) 
-}
+sum : List[Int32] => Int32 =
+  (list) => match(list) {
+    case List.Nil: 0
+    case List.Cons(x, xs): x + sum(xs) 
+  }
 ```
