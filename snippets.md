@@ -33,6 +33,7 @@ type AtLeast2D = {x: Int32, y: Int32, ...z}
 
 let p2 = {x: 1, y: 2, a: 'foo', b: 'bar'}
 let {x: Int32, y: Int32, ...z} = p2
+let {a: Int32 = x, b: Int32 = y, ...z} = p2
 ```
 
 (row polymorphism syntax oriented on https://github.com/sebmarkbage/ecmascript-rest-spread)
