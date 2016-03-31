@@ -10,5 +10,5 @@ type Point3D = {x: Int32, y: Int32, z: Int32};
 ```
 
 ```
-function addXAndY(p: Point2D) = p.x + p.y;
+func addXAndY(p: Point2D) = p.x + p.y;
 ```
