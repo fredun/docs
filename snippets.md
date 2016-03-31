@@ -66,12 +66,12 @@ func main() {
 alternative:
 
 ```
-interface Sum32 {
-  sum(): Int32
+type Sum32 = {
+  sum: () => Int32
 }
 
-interface Magic32 {
-  magic(): Int32
+type Magic32 = {
+  magic: () => Int32
 }
 
 let point2DWithSum = (p: {x: Int32, y: Int32}): Sum32 => {
