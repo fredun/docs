@@ -5,11 +5,11 @@
 Structural types (records):
 
 ```
-type Point2D = {x: Int32, y: Int32};
-type Point3D = {x: Int32, y: Int32, z: Int32};
+type Point2D = {x: Int32, y: Int32}
+type Point3D = {x: Int32, y: Int32, z: Int32}
 ```
 
 ```
 addXAndY : Point2D -> Int32
-addXAndY = p => p.x + p.y;
+addXAndY = p => p.x + p.y
 ```
