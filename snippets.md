@@ -15,6 +15,9 @@
 
 ```
 type XY = (Int32, Int32)
+
+let xy = (1, 2)
+let (x: Int32, y: Int32) = xy
 ```
 
 ### Tagged product types (records)
@@ -22,6 +25,9 @@ type XY = (Int32, Int32)
 ```
 type Point2D = {x: Int32, y: Int32}
 type Point3D = {x: Int32, y: Int32, z: Int32}
+
+let p = {x: 1, y: 2}
+let {x: Int32, y: Int32} = p
 ```
 
 ### Tagged unions (enums)
@@ -29,20 +35,22 @@ type Point3D = {x: Int32, y: Int32, z: Int32}
 ```
 type Points = {
   case D2: Point2D
-  case D3: Point3D
+  case D3: {x: Int32, y: Int32, z: Int32}
 }
 ```
+
+(inspired by Swift's enumerations: https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html)
 
 ### Function Types
 
 ```
-let addXAndY = (p: Point32): Int32 => p.x + p.y
+let addXAndY = (p: Point2D): Int32 => p.x + p.y
 ```
 
 ```
 let sum = (list: List[Int32]): Int32 => match (list) {
-  case List.Nil: 0
-  case List.Cons(x, xs): x + sum(xs) 
+  case Nil: 0
+  case Cons (x, xs): x + sum(xs) 
 }
 ```
 
