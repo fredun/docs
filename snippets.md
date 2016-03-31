@@ -3,7 +3,7 @@
 ## Type System
 
 ### Primitive Types
- - Unit
+ - Unit (can be modelled as nullary tuple)
  - Boolean
  - [U]Int[8, 16, 32, 64]
  - Float, Double (or Float[32, 64]? or Double[32, 64]?)
