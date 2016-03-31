@@ -63,6 +63,8 @@ func main() {
 }
 ```
 
+something similar to Kotlin's extensions? (https://kotlinlang.org/docs/reference/extensions.html)
+
 alternative:
 
 ```
