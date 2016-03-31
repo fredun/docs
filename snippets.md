@@ -45,3 +45,20 @@ let sum = (list: List[Int32]): Int32 => match (list) {
   case List.Cons(x, xs): x + sum(xs) 
 }
 ```
+
+### Fancy name
+
+```
+class Point2DWithSum(val x:Int32, val y:Int32) {
+  func sum() = x + y
+}
+
+class Point2DWithMagic(val x:Int32, val y:Int32) {
+  func magic() = x * 2 + y * 2
+}
+
+func main() {
+  let lala = Point2DWithSum(42, 18);
+  let theMagic = (lala as Point2DWithMagic).magic();
+}
+```
