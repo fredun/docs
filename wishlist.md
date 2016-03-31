@@ -15,6 +15,8 @@ General ideas:
 - Awesome type inference
 - Mandate type annotations on top-level functions?
 - Support structural and nominal types (Elm and PureScript as examples)
+- Parametric Polymorphism
+- Ad-hoc Polymorphism based on the structural types
 - Higher-Kinded Types (Bonus item!)
 
 ## Syntax
