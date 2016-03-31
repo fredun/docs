@@ -1,5 +1,10 @@
 # Feature Wishlist
 
+General ideas:
+
+- Don't try to be the most cutting-edge function programming language, focus on features that work well together
+- Aim to be easily approachable by beginners, but provide enough headroom for "advanced" users
+
 ## Compilation
 
 - Great, understandable error messages (see Elm)
