@@ -11,5 +11,9 @@ type Point3D = {x: Int32, y: Int32, z: Int32}
 
 ```
 addXAndY : Point2D -> Int32
-addXAndY = p => p.x + p.y
+addXAndY = p -> p.x + p.y
+```
+or:
+```
+addXAndY : Point32 -> Int32 = p -> p.x + p.y
 ```
