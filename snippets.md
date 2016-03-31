@@ -2,6 +2,12 @@
 
 ## Type System
 
+### Simple product types (tuples)
+
+```
+type XY = (Int32, Int32)
+```
+
 ### Structural types (records)
 
 ```
