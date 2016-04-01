@@ -8,6 +8,7 @@ General ideas:
 - Identifiers (Unicode XID_Start & XID_Continue)
 - Force naming rules? (i.e. enums are all UPPERCASE, function names start with lowercase, class names start with Uppercase...). Crystal does this, but it gets completely broken when using the FFI.
 - String templating? This means there needs to be a way of converting types to Strings, like the `toString()` Java convention, which might not be desirable (the less conventions, the better?). We can also forcve every type inside the template to be a String.
+- Java system of packaging? (i.e. directory structure needs to match the defined package on source files)
 
 ## Compilation
 
