@@ -5,7 +5,7 @@ General ideas:
 - Don't try to be the most cutting-edge function programming language, focus on features that work well together
 - Aim to be easily approachable by beginners, but provide enough headroom for "advanced" users
 - Rather be explicit about operator (and general syntactic) precendence by requiring grouping (parenthesis) than to have a lot of precedence rules (also avoids having to have an ambiguous grammar, due to the "dangling else problem")
-- Identifiers (Unicode ID_Start & ID_Continue)
+- Identifiers (Unicode XID_Start & XID_Continue)
 - Force naming rules? (i.e. enums are all UPPERCASE, function names start with lowercase, class names start with Uppercase...). Crystal does this, but it gets completely broken when using the FFI.
 - String templating? This means there needs to be a way of converting types to Strings, like the `toString()` Java convention, which might not be desirable (the less conventions, the better?). We can also forcve every type inside the template to be a String.
 
