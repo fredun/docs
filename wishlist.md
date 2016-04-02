@@ -47,3 +47,4 @@ For inspiration and reference:
 
 - Immutability (by default)
 - Algebraic Data Types (sum and product types)
+  - Non-exhaustive matches are a compile error
