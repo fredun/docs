@@ -83,6 +83,12 @@ let sum = (list: List[Int32]): Int32 => match (list) {
 }
 ```
 
+### Type Functions
+
+```
+let emptyList = [x: Type]: Type => (): List[x] => [] 
+```
+
 ### Fancy name
 
 ```
