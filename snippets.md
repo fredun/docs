@@ -1,5 +1,20 @@
 # Snippets
 
+## Module System
+
+- Module names based on file hierarchy? E.g. src/foo/bar/baz.fn is module {projectName}.foo.bar.baz
+
+```
+module MyModule {
+  type MyThing = MyInternalThing
+  let myFunc = myInternalFunc
+}
+
+type MyInternalThing = {}
+
+let myInternalFunc = () => ...
+```
+
 ## Type System
 
 ### Primitive Types
