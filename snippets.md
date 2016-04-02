@@ -6,7 +6,7 @@
 - Modules as first-class values?
   - Similar to OCaml's functors
   - needs support in the type system
-  - we can have functions that transform modules (think dependency injection!)
+  - we can have functions that consume/return/transform modules (think dependency injection!)
 
 ```
 module MyModule {
