@@ -3,6 +3,10 @@
 ## Module System
 
 - Module names based on file hierarchy? E.g. src/foo/bar/baz.fn is module {projectName}.foo.bar.baz
+- Modules as first-class values?
+  - Similar to OCaml's functors
+  - needs support in the type system
+  - we can have functions that transform modules (think dependency injection!)
 
 ```
 module MyModule {
