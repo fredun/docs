@@ -4,7 +4,7 @@
 
 - Module names based on file hierarchy? E.g. src/foo/bar/baz.fn is module {projectName}.foo.bar.baz
 - Modules as first-class values?
-  - Similar to OCaml's functors
+  - Similar to OCaml's functors, C++ templates
   - needs support in the type system
   - we can have functions that consume/return/transform modules (think dependency injection!)
 
