@@ -122,25 +122,31 @@ something similar to Kotlin's extensions? (https://kotlinlang.org/docs/reference
 alternative:
 
 ```
-type Sum32 = {
-  sum: () => Int32
+behaviour Sum32[X] {
+  sum: (x: X) => Int32
 }
 
-type Magic32 = {
-  magic: () => Int32
+behaviour Magic32[X] = {
+  magic: (x: X) => Int32
 }
 
-let point2DWithSum = (p: {x: Int32, y: Int32}): Sum32 => {
-  sum: () => x + y
+let point2DWithSum: Sum32[Point2D] = {
+  sum: (p: Point2D) => p.x + p.y
 }
 
-let point2DWithMagic = (p: {x: Int32, y: Int32}): Magic32 = {
-  magic: () => x * 2 + y * 2
+let point2DWithMagic = Magic32[Point2D] = {
+  magic: (p: Point2D) => p.x * 2 + p.y * 2
 }
+
+// this checks that there are no overlapping behaviours in scope
+// for instance, a Sum32[{x: Int32, y: Int32, ...z}] may not co-exist
+// with a Sum32[{x: Int32, y: Int32}] or a Sum32[{x: Int32, y: Int32, z: Int32}].
+use point2DWithSum as Sum32[Point2D]
+use point2DWithMagic as Magic32[Point2D]
 
 func main() {
   let lala = {x:42, y:18};
-  let theSum = point2DWithSum(lala).sum();
-  let theMagic = point2DWithMagic(lala).magic();
+  let theSum = lala.sum();
+  let theMagic = lala.magic();
 }
 ```
