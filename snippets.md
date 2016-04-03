@@ -146,7 +146,7 @@ use point2DWithMagic as Magic32[Point2D]
 
 func main() {
   let lala = {x:42, y:18};
-  let theSum = lala.sum();
-  let theMagic = lala.magic();
+  let theSum = Sum32.sum(lala);
+  let theMagic = Magic32.magic(lala);
 }
 ```
