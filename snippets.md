@@ -1,5 +1,15 @@
 # Snippets
 
+## Comments
+
+- Using Markdown / ASCIIDoc or similar
+
+```
+// Single line comment
+/* Multiline comment */
+/** Doc multiline comment */
+```
+
 ## Module System
 
 - Module names based on file hierarchy? E.g. src/foo/bar/baz.fn is module {projectName}.foo.bar.baz
