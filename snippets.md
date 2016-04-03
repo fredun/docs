@@ -96,8 +96,8 @@ let sum = (list: List[Int32]): Int32 => match (list) {
 ### Type Functions
 
 ```
-let emptyList = [x] => new List[x]()
-let emptyList = [x: Type]: Type => new List[x]()
+let emptyList[X] = new List[X]()
+let emptyList[X: Type] = new List[x]()
 ```
 
 ### Fancy name
