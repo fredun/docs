@@ -52,13 +52,21 @@ let (x: Int32, y: Int32) = xy
 ### Tagged product types (records)
 
 ```
-type Point2D = {x: Int32, y: Int32}
-type Point3D = {x: Int32, y: Int32, z: Int32}
+struct Point2D {
+  x: Int32,
+  y: Int32
+}
+
+struct Point3D[X] {
+  x: X,
+  y: X,
+  z: X
+}
 
 let p = {x: 1, y: 2}
 let {x: Int32, y: Int32} = p
 
-type AtLeast2D = {x: Int32, y: Int32, ...z}
+struct AtLeast2D {x: Int32, y: Int32, ...z}
 
 let p2 = {x: 1, y: 2, a: 'foo', b: 'bar'}
 let {x: Int32, y: Int32, ...z} = p2
@@ -72,9 +80,9 @@ let {a: Int32 = x, b: Int32 = y, ...z} = p2
 ### Tagged unions (enums)
 
 ```
-type Points = {
-  case D2: Point2D
-  case D3: {x: Int32, y: Int32, z: Int32}
+enum Points {
+  case D2(Point2D)
+  case D3({x: Int32, y: Int32, z: Int32})
 }
 ```
 
@@ -89,7 +97,7 @@ let addXAndY = (p: Point2D): Int32 => p.x + p.y
 ```
 let sum = (list: List[Int32]): Int32 => match (list) {
   case Nil: 0
-  case Cons (x, xs): x + sum(xs) 
+  case Cons(x, xs): x + sum(xs) 
 }
 ```
 
@@ -97,7 +105,7 @@ let sum = (list: List[Int32]): Int32 => match (list) {
 
 ```
 let emptyList[X] = new List[X]()
-let emptyList[X: Type] = new List[x]()
+let emptyList[X: Type] = new List[X]()
 ```
 
 ### Fancy name
@@ -126,7 +134,7 @@ behaviour Sum32[X] {
   sum: (x: X) => Int32
 }
 
-behaviour Magic32[X] = {
+behaviour Magic32[X] {
   magic: (x: X) => Int32
 }
 
