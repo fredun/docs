@@ -110,9 +110,9 @@ let emptyList[X: Type]: List[X] = new List()
 // needs to be called like this:
 emptyList[Int32]
 // or this:
-forall [X](emptyList[X])
+forAll[X](emptyList[X])
 
-let emptyList2 = forall [X](new List[X]())
+let emptyList2 = forAll[X](new List[X]())
 // can be called like this:
 emptyList
 ```
