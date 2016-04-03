@@ -104,12 +104,21 @@ let sum = (list: List[Int32]): Int32 => match (list) {
 ### Type Functions
 
 ```
+let emptyList = [X](new List[X]())
 let emptyList[X] = new List[X]()
 let emptyList[X: Type]: List[X] = new List()
+// needs to be called like this:
+emptyList[Int32]
+// or this:
+forall [X](emptyList[X])
+
+let emptyList2 = forall [X](new List[X]())
+// can be called like this:
+emptyList
 ```
 
 ```
-let head = [X: Type](list: List[X]): Option[X] => match (list) {
+let head = forall [X: Type](list: List[X]): Option[X] => match (list) {
   case Nil: Option.none()
   case Cons(x, xs): Option.some(x) 
 }
