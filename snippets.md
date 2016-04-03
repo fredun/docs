@@ -101,18 +101,18 @@ let sum = (list: List[Int32]): Int32 => match (list) {
 }
 ```
 
-```
-let head = [X](list: List[X]): Option[X] => match (list) {
-  case Nil: Option.none()
-  case Cons(x, xs): Option.some(x) 
-}
-```
-
 ### Type Functions
 
 ```
 let emptyList[X] = new List[X]()
 let emptyList[X: Type]: List[X] = new List()
+```
+
+```
+let head = [X: Type](list: List[X]): Option[X] => match (list) {
+  case Nil: Option.none()
+  case Cons(x, xs): Option.some(x) 
+}
 ```
 
 ### Fancy name
