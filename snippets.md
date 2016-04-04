@@ -133,6 +133,7 @@ let head = forall [X: Type](list: List[X]): Option[X] => match (list) {
 ```
 // works like AtomicReference in Java
 // all operations on the ref are impure!
+// the function passed to `update` _must_ be pure!
 
 let myMutableNumber: Ref[Int32] = mkRef(42)
 
