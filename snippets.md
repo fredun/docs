@@ -95,7 +95,9 @@ let addXAndY = (p: Point2D): Int32 => p.x + p.y
 ```
 
 ```
-let sum = (list: List[Int32]): Int32 => match (list) {
+let list = [1,2,3]
+
+let sum = (list: List[Int32]): Int32 => switch list {
   case Nil: 0
   case Cons(x, xs): x + sum(xs) 
 }
