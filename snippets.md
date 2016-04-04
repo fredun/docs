@@ -124,6 +124,24 @@ let head = forall [X: Type](list: List[X]): Option[X] => match (list) {
 }
 ```
 
+### Mutability/Side-effects
+
+## References
+
+```
+// works like AtomicReference in Java
+// all operations on the ref are impure!
+
+let myMutableNumber: Ref[Int32] = mkRef(42)
+
+impure function incrAndGet(ref: Ref[Int32]): Int32 {
+  myMutableNumber.update(x => x + 1)
+
+  let number: Int32 = myMutableNumber.read()
+  return number
+}
+```
+
 ### Fancy name
 
 ```
