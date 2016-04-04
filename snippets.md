@@ -146,11 +146,11 @@ something similar to Kotlin's extensions? (https://kotlinlang.org/docs/reference
 alternative:
 
 ```
-behaviour Sum32[X] {
+interface Sum32[X] {
   sum: (x: X) => Int32
 }
 
-behaviour Magic32[X] {
+interface Magic32[X] {
   magic: (x: X) => Int32
 }
 
