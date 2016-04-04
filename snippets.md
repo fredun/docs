@@ -126,7 +126,7 @@ let head = forall [X: Type](list: List[X]): Option[X] => match (list) {
 
 ### Mutability/Side-effects
 
-## References
+#### References
 
 ```
 // works like AtomicReference in Java
