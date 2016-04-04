@@ -1,10 +1,14 @@
 grammar fredun;
 
-start: (letDef | typeDef)* ;
+start: (moduleDef | letDef | typeDef | recordDef | enumDef)* ;
 
-letDef: 'let' (recordDeref | tupleDeref | varName) '=' (funcDef | expr) ;
+moduleDef: 'module' type moduleBlock ;
+moduleBlock: '{' (letDef | typeDef | recordDef | enumDef) '}' ;
+letDef: 'let' (recordDeref | tupleDeref | varName) '=' expr ;
 funcDef: '(' argList ')' ':' type '=>' expr ;
-typeDef: 'type' type '=' (tuple | record | enum) ;
+typeDef: 'type' type '=' tuple ;
+recordDef: 'struct' type record ;
+enumDef: 'enum' type enumBlock ;
 
 recordDeref: '{' argWithAssignList (',' spread)? '}' ;
 tupleDeref: '(' argList (',' spread)? ')' ;
@@ -12,12 +16,18 @@ tupleDeref: '(' argList (',' spread)? ')' ;
 record: '{' argList (',' spread)? '}' ;
 tuple: '(' typeList ')' ;
 
-enum: '{' enumList '}' ;
+enumBlock: '{' enumList '}' ;
 
 spread: '...' varName ;
 
-enumList: case* ;
-case: 'case' varName ':' (record | type) ;
+enumList: caseBlock* ;
+caseBlock: 'case' varName '(' (record | type) ')' ;
+
+constructor: ID constructorVars?;
+constructorVars: '(' constructorArgList ')';
+
+constructorArgList: constructorArg (',' constructorArg)* ;
+constructorArg: varName (':' type)? ;
 
 typeList: type (',' type)* ;
 argList: arg (',' arg)* ;
@@ -27,23 +37,49 @@ exprList: expr (',' expr)* ;
 arg: varName ':' type ;
 argWithAssign: arg ('=' varName)?;
 
-expr: exprTuple | exprRecord | CHAR | QUOTED_STRING | ID ;
+expr: block
+            | expr '.' ID
+            | expr '==' expr
+            | expr '^' expr
+            | expr '*' expr
+            | expr '/' expr
+            | expr '+' expr
+            | expr '-' expr
+            | exprIf | exprTuple | exprRecord
+            | matchExpr
+            | funcDef
+            | CHAR | QUOTED_STRING | NUM | ID ;
+block: '{' expr* '}' ;
 
 exprTuple: '(' exprList? ')' ;
 exprRecord: '{' (colonExpr (',' colonExpr)*)? '}' ;
+exprIf: 'if' '(' expr ')' block ('else' block)? ;
+matchExpr: 'match' '(' expr ')' matchList ;
+
+matchList: '{' matchCase* '}' ;
+matchCase: 'case' constructor ':' expr ;
 
 colonExpr: varName ':' expr ;
 
 varName: ID;
-type: ID ;
+type: ID typeKind? ;
+typeKind: '[' type ']' ;
 
 
-fragment ESCAPED_QUOTE : '\\"';
-QUOTED_STRING :   '"' ( ESCAPED_QUOTE | ~('\n'|'\r') )*? '"';
-fragment ESCAPED_SINGLE_QUOTE : '\\\'' ;
+fragment ESCAPED_QUOTE: '\\"';
+fragment ESCAPED_SINGLE_QUOTE: '\\\'' ;
 fragment HEX: [0-9a-zA-Z] ;
 fragment UNICODE: '\\u' HEX HEX? HEX? HEX? HEX? ;
+
+QUOTED_STRING: '"' ( ESCAPED_QUOTE | UNICODE | ~('\n'|'\r') )*? '"' ;
 CHAR: '\'' (ESCAPED_SINGLE_QUOTE | UNICODE | ~('\n'|'\r')) '\'' ;
 
-ID : [a-zA-Z0-9]+ ;
-WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+fragment XID_Start : [_a-zA-Z] ;
+fragment XID_Continue: [0-9_a-zA-Z] ;
+
+NUM: [0-9]+ ;
+ID : XID_Start XID_Continue* ;
+DOC_COMMENT: '/**' .*? '*/' -> channel(HIDDEN) ;
+BLOCK_COMMENT: '/*' .*? '*/' -> channel(HIDDEN) ;
+LINE_COMMENT: '//' ~[\r\n]* -> channel(HIDDEN) ;
+WS : [ \t\r\n]+ -> channel(HIDDEN) ; // skip spaces, tabs, newlines
