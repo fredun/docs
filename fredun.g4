@@ -3,7 +3,7 @@ grammar fredun;
 start: (moduleDef | letDef | typeDef | recordDef | enumDef)* ;
 
 moduleDef: 'module' type moduleBlock ;
-moduleBlock: '{' (letDef | typeDef | recordDef | enumDef) '}' ;
+moduleBlock: '{' (letDef | typeDef | recordDef | enumDef)* '}' ;
 letDef: 'let' (recordDeref | tupleDeref | varName) '=' expr ;
 funcDef: '(' argList ')' ':' type '=>' expr ;
 typeDef: 'type' type '=' tuple ;
@@ -37,18 +37,21 @@ exprList: expr (',' expr)* ;
 arg: varName ':' type ;
 argWithAssign: arg ('=' varName)?;
 
-expr: block
-            | expr '.' ID
-            | expr '==' expr
-            | expr '^' expr
-            | expr '*' expr
-            | expr '/' expr
-            | expr '+' expr
-            | expr '-' expr
-            | exprIf | exprTuple | exprRecord
-            | matchExpr
-            | funcDef
-            | CHAR | QUOTED_STRING | NUM | ID ;
+expr: block | '(' expr ')'
+    | expr '.' ID
+    | <assoc=right> expr POW expr          // powExpr
+    | MINUS expr                           // unaryMinusExpr
+    | NOT expr                             // notExpr
+    | expr op=(MULT | DIV | MOD) expr      // multiplicationExpr
+    | expr op=(PLUS | MINUS) expr          // additiveExpr
+    | expr op=(LTEQ | GTEQ | LT | GT) expr // relationalExpr
+    | expr op=(EQ | NEQ) expr              // equalityExpr
+    | expr AND expr                        // andExpr
+    | expr OR expr                         // orExpr
+    | '(' argList ')' ':' type '=>' expr
+    | exprIf | /*exprTuple |*/ exprRecord | matchExpr
+    | const=(CHAR | QUOTED_STRING) | number | ID ;
+
 block: '{' expr* '}' ;
 
 exprTuple: '(' exprList? ')' ;
@@ -65,6 +68,21 @@ varName: ID;
 type: ID typeKind? ;
 typeKind: '[' type ']' ;
 
+POW: '^';
+MINUS: '-';
+NOT: '!';
+MULT: '*';
+DIV: '/';
+MOD: '%';
+PLUS: '+';
+LTEQ: '<=';
+GTEQ: '>=';
+LT: '<';
+GT: '>';
+EQ: '==';
+NEQ: '!==';
+AND: '&';
+OR: '|';
 
 fragment ESCAPED_QUOTE: '\\"';
 fragment ESCAPED_SINGLE_QUOTE: '\\\'' ;
@@ -77,7 +95,20 @@ CHAR: '\'' (ESCAPED_SINGLE_QUOTE | UNICODE | ~('\n'|'\r')) '\'' ;
 fragment XID_Start : [_a-zA-Z] ;
 fragment XID_Continue: [0-9_a-zA-Z] ;
 
-NUM: [0-9]+ ;
+number: unary_operator? unsigned_number;
+
+unary_operator: MINUS | PLUS ;
+
+unsigned_number: UNSIGNED_INT | UNSIGNED_HEX | UNSIGNED_FLOAT;
+
+UNSIGNED_INT: [0-9]+ ;
+UNSIGNED_HEX: '0x' [0-9a-fA-F]+ ;
+
+UNSIGNED_FLOAT: [0-9]+ '.' [0-9]* Exponent? | '.' [0-9]+ Exponent? | [0-9]+ Exponent;
+
+fragment
+Exponent : ('e'|'E') ('+'|'-')? ('0'..'9')+ ;
+
 ID : XID_Start XID_Continue* ;
 DOC_COMMENT: '/**' .*? '*/' -> channel(HIDDEN) ;
 BLOCK_COMMENT: '/*' .*? '*/' -> channel(HIDDEN) ;
