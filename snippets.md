@@ -29,6 +29,16 @@ type MyInternalThing = {}
 let myInternalFunc = () => ...
 ```
 
+The `Builtin` module contains the builtins for the language
+```
+module Builtin {
+  /**
+   * This is magic!
+   */
+  foreign divMod: (Int, Int) => (Int, Int)
+}
+```
+
 ## Type System
 
 ### Primitive Types
