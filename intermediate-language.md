@@ -18,8 +18,8 @@
 (tuple (variable "a") (variable "b"))
 
 (type ...)
-(type (variable "A"))
-(type (tuple (variable "A") (variable "B")))
+(type (type-variable "A"))
+(type (tuple (type-variable "A") (type-variable "B")))
 
 (type-annotation (variable "a") "Int")
 ```
