@@ -136,6 +136,18 @@ let head = forall [X: Type](list: List[X]): Option[X] => match (list) {
 }
 ```
 
+### Objects
+
+```
+object Foo {
+  val bar: Fooish = 42
+  
+  type Fooish = Int32
+  
+  fun boozle(x: Fooish): Fooish = x + 1
+}
+```
+
 ### Mutability/Side-effects
 
 #### References
