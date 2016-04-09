@@ -146,7 +146,7 @@ object Foo {
   
   fun boozle(x: Fooish): Fooish = bamboozle(x)
   
-  private bamboozle(x: Fooish): Fooish = x + 1
+  private bamboozle(x: Fooish): Fooish = x + bar
 }
 ```
 
