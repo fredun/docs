@@ -144,7 +144,9 @@ object Foo {
   
   type Fooish = Int32
   
-  fun boozle(x: Fooish): Fooish = x + 1
+  fun boozle(x: Fooish): Fooish = bamboozle(x)
+  
+  private bamboozle(x: Fooish): Fooish = x + 1
 }
 ```
 
