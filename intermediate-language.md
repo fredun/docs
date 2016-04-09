@@ -1,10 +1,18 @@
 ## V1
 
 ```
+(file "foo.fn"
+  (package "foo")
+  (object "Foo"
+    (val "thing" (constant (string "random")))
+    (fun "hihihoho" "x" (variable "x"))
+  )
+)
+
 (variable "a")
 
 (constant ...)
-(constant (numeric 42))
+(constant (numeric (integer 32 -1)))
 (constant (char 'a'))
 (constant (boolean false))
 (constant (string "foo"))
