@@ -4,6 +4,7 @@
 (file "foo.fn"
   (package "foo")
   (object "Foo"
+    (type "Bar" (type-variable "Int32"))
     (val "thing" (constant (string "random")))
     (fun "hihihoho" "x" (variable "x"))
   )
