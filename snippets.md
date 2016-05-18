@@ -35,7 +35,7 @@ module Builtin {
   /**
    * This is magic!
    */
-  foreign divMod: (Int, Int) => (Int, Int)
+  foreign divMod func(Int, Int) (Int, Int)
 }
 ```
 
@@ -56,7 +56,7 @@ module Builtin {
 type XY = (Int32, Int32)
 
 let xy = (1, 2)
-let (x: Int32, y: Int32) = xy
+let (x Int32, y Int32) = xy
 ```
 
 ### Tagged product types (records)
@@ -101,13 +101,13 @@ enum Points {
 ### Function Types
 
 ```
-let addXAndY = (p: Point2D): Int32 => p.x + p.y
+let addXAndY = func(p Point2D) Int32 => p.x + p.y
 ```
 
 ```
 let list = [1,2,3]
 
-let sum = (list: List[Int32]): Int32 => switch list {
+let sum = func(list: List[Int32]) Int32 => switch list {
   case Nil: 0
   case Cons(x, xs): x + sum(xs) 
 }
@@ -116,21 +116,13 @@ let sum = (list: List[Int32]): Int32 => switch list {
 ### Type Functions
 
 ```
-let emptyList = [X](new List[X]())
-let emptyList[X] = new List[X]()
-let emptyList[X: Type]: List[X] = new List()
-// needs to be called like this:
+let emptyList[X]: List[X] = new List[X]()
+// can be explictly called like this:
 emptyList[Int32]
-// or this:
-forAll[X](emptyList[X])
-
-let emptyList2 = forAll[X](new List[X]())
-// can be called like this:
-emptyList
 ```
 
 ```
-let head = forall [X: Type](list: List[X]): Option[X] => match (list) {
+let head = func[X](list: List[X]) Option[X] => match (list) {
   case Nil: Option.none()
   case Cons(x, xs): Option.some(x) 
 }
@@ -140,13 +132,13 @@ let head = forall [X: Type](list: List[X]): Option[X] => match (list) {
 
 ```
 object Foo {
-  val bar: Fooish = 42
+  val bar Fooish = 42
   
   type Fooish = Int32
   
-  fun boozle(x: Fooish): Fooish = bamboozle(x)
+  func boozle(x Fooish) Fooish = bamboozle(x)
   
-  private bamboozle(x: Fooish): Fooish = x + bar
+  private func bamboozle(x Fooish) Fooish = x + bar
 }
 ```
 
@@ -159,12 +151,12 @@ object Foo {
 // all operations on the ref are impure!
 // the function passed to `update` _must_ be pure!
 
-let myMutableNumber: Ref[Int32] = mkRef(42)
+let myMutableNumber Ref[Int32] = mkRef(42)
 
-impure function incrAndGet(ref: Ref[Int32]): Int32 {
-  myMutableNumber.update(x => x + 1)
+func incrAndGet!(ref Ref[Int32]) Int32 {
+  myMutableNumber.update(func(x) => x + 1)
 
-  let number: Int32 = myMutableNumber.read()
+  let number = myMutableNumber.read()
   return number
 }
 ```
