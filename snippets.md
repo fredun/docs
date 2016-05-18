@@ -35,7 +35,7 @@ module Builtin {
   /**
    * This is magic!
    */
-  foreign divMod func(Int, Int) (Int, Int)
+  foreign func divMod(Int, Int) (Int, Int)
 }
 ```
 
