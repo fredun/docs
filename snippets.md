@@ -35,7 +35,7 @@ module Builtin {
   /**
    * This is magic!
    */
-  foreign func divMod(Int, Int) (Int, Int)
+  foreign func divMod(Int, Int): (Int, Int)
 }
 ```
 
@@ -56,7 +56,7 @@ module Builtin {
 type alias XY = (Int32, Int32)
 
 let xy = (1, 2)
-let (x Int32, y Int32) = xy
+let (x, y) = xy
 ```
 
 ### Tagged product types (records)
@@ -101,13 +101,13 @@ enum Points {
 ### Function Types
 
 ```
-let addXAndY = func(p Point2D) Int32 => p.x + p.y
+let addXAndY = func(p: Point2D): Int32 => p.x + p.y
 ```
 
 ```
 let list = [1,2,3]
 
-func sum(list List[Int32]) Int32 => match list {
+func sum(list: List[Int32]): Int32 => match list {
   case Nil: 0
   case Cons(x, xs): x + sum(xs) 
 }
@@ -122,7 +122,7 @@ emptyList[Int32]
 ```
 
 ```
-func head[X](list List[X]) Option[X] => match (list) {
+func head[X](list: List[X]): Option[X] => match (list) {
   case Nil: Option.none()
   case Cons(x, xs): Option.some(x) 
 }
@@ -132,13 +132,13 @@ func head[X](list List[X]) Option[X] => match (list) {
 
 ```
 object Foo {
-  val bar Fooish = 42
+  val bar: Fooish = 42
   
   type alias Fooish = Int32
   
-  func boozle(x Fooish) Fooish = bamboozle(x)
+  func boozle(x: Fooish): Fooish = bamboozle(x)
   
-  private func bamboozle(x Fooish) Fooish = x + bar
+  private func bamboozle(x: Fooish): Fooish = x + bar
 }
 ```
 
@@ -157,9 +157,9 @@ they need to be invoked using the `!` as a suffix.
 // all operations on the ref are impure!
 // the function passed to `update` _must_ be pure!
 
-let myMutableNumber Ref[Int32] = mkRef(42)
+let myMutableNumber: Ref[Int32] = mkRef(42)
 
-func incrAndGet!(ref Ref[Int32]) Int32 {
+func incrAndGet!(ref: Ref[Int32]): Int32 {
   myMutableNumber.update!(func(x) => x + 1)
 
   let number = myMutableNumber.read!()
