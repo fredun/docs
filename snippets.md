@@ -20,11 +20,11 @@
 
 ```
 module MyModule {
-  type MyThing = MyInternalThing
+  type alias MyThing = MyInternalThing
   let myFunc = myInternalFunc
 }
 
-type MyInternalThing = {}
+type MyInternalThing = struct {}
 
 let myInternalFunc = () => ...
 ```
@@ -53,7 +53,7 @@ module Builtin {
 ### Simple product types (tuples)
 
 ```
-type XY = (Int32, Int32)
+type alias XY = (Int32, Int32)
 
 let xy = (1, 2)
 let (x Int32, y Int32) = xy
@@ -62,12 +62,12 @@ let (x Int32, y Int32) = xy
 ### Tagged product types (records)
 
 ```
-struct Point2D {
+type Point2D = struct {
   x: Int32,
   y: Int32
 }
 
-struct Point3D[X] {
+type Point3D[X] = struct {
   x: X,
   y: X,
   z: X
@@ -76,7 +76,7 @@ struct Point3D[X] {
 let p = {x: 1, y: 2}
 let {x: Int32, y: Int32} = p
 
-struct AtLeast2D {x: Int32, y: Int32, ...z}
+type AtLeast2D = struct {x: Int32, y: Int32, ...z}
 
 let p2 = {x: 1, y: 2, a: 'foo', b: 'bar'}
 let {x: Int32, y: Int32, ...z} = p2
@@ -134,7 +134,7 @@ let head = func[X](list: List[X]) Option[X] => match (list) {
 object Foo {
   val bar Fooish = 42
   
-  type Fooish = Int32
+  type alias Fooish = Int32
   
   func boozle(x Fooish) Fooish = bamboozle(x)
   
