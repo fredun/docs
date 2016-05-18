@@ -144,6 +144,12 @@ object Foo {
 
 ### Mutability/Side-effects
 
+#### Impure Functions
+
+Impure functions are of type `func!` instead of `func`.
+If they are given a name (e.g. in function declarations),
+they need to be invoked using the `!` as a suffix.
+
 #### References
 
 ```
@@ -154,9 +160,9 @@ object Foo {
 let myMutableNumber Ref[Int32] = mkRef(42)
 
 func incrAndGet!(ref Ref[Int32]) Int32 {
-  myMutableNumber.update(func(x) => x + 1)
+  myMutableNumber.update!(func(x) => x + 1)
 
-  let number = myMutableNumber.read()
+  let number = myMutableNumber.read!()
   return number
 }
 ```
