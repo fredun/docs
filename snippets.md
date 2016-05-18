@@ -107,7 +107,7 @@ let addXAndY = func(p Point2D) Int32 => p.x + p.y
 ```
 let list = [1,2,3]
 
-let sum = func(list: List[Int32]) Int32 => switch list {
+func sum(list: List[Int32]) Int32 => match list {
   case Nil: 0
   case Cons(x, xs): x + sum(xs) 
 }
@@ -122,7 +122,7 @@ emptyList[Int32]
 ```
 
 ```
-let head = func[X](list: List[X]) Option[X] => match (list) {
+func head[X](list: List[X]) Option[X] => match (list) {
   case Nil: Option.none()
   case Cons(x, xs): Option.some(x) 
 }
