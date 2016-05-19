@@ -26,7 +26,7 @@ module MyModule {
 
 type MyInternalThing = struct {}
 
-let myInternalFunc = () => ...
+let myInternalFunc = func() => ...
 ```
 
 The `Builtin` module contains the builtins for the language
