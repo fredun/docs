@@ -91,8 +91,8 @@ let {a: Int32 = x, b: Int32 = y, ...z} = p2
 
 ```
 enum Points {
-  case D2(Point2D)
-  case D3({x: Int32, y: Int32, z: Int32})
+  Dim2(Point2D)
+  Dim3({x: Int32, y: Int32, z: Int32})
 }
 ```
 
@@ -107,7 +107,7 @@ let addXAndY = func(p: Point2D): Int32 => p.x + p.y
 ```
 let list = [1,2,3]
 
-func sum(list: List[Int32]): Int32 => match list {
+func sum(list: List[Int32]): Int32 => match (list) {
   case Nil: 0
   case Cons(x, xs): x + sum(xs) 
 }
