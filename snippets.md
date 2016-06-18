@@ -19,19 +19,18 @@
   - we can have functions that consume/return/transform modules (think dependency injection!)
 
 ```
-module MyModule {
-  type alias MyThing = MyInternalThing
-  let myFunc = myInternalFunc
+package com.fredun.foo;
+
+object Fooish {
+  func myInternalFunc() {
+    ...
+  }
 }
-
-type MyInternalThing = struct {}
-
-let myInternalFunc = func() => ...
 ```
 
-The `Builtin` module contains the builtins for the language
+The `Builtin` object contains the builtins for the language
 ```
-module Builtin {
+object Builtin {
   /**
    * This is magic!
    */
