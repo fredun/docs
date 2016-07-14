@@ -90,8 +90,8 @@ let {a: Int32 = x, b: Int32 = y, ...z} = p2
 
 ```
 enum Points {
-  Dim2(Point2D)
-  Dim3({x: Int32, y: Int32, z: Int32})
+  case Dim2(Point2D)
+  case Dim3({x: Int32, y: Int32, z: Int32})
 }
 ```
 
