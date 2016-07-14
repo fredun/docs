@@ -52,7 +52,7 @@ object Builtin {
 ### Simple product types (tuples)
 
 ```
-type alias XY = (Int32, Int32)
+type XY alias (Int32, Int32)
 
 let xy = (1, 2)
 let (x, y) = xy
@@ -61,12 +61,12 @@ let (x, y) = xy
 ### Tagged product types (records)
 
 ```
-type Point2D = struct {
+type Point2D struct {
   x: Int32,
   y: Int32
 }
 
-type Point3D[X] = struct {
+type Point3D[X] struct {
   x: X,
   y: X,
   z: X
@@ -75,7 +75,7 @@ type Point3D[X] = struct {
 let p = {x: 1, y: 2}
 let {x: Int32, y: Int32} = p
 
-type AtLeast2D = struct {x: Int32, y: Int32, ...z}
+type AtLeast2D[Z] struct {x: Int32, y: Int32, ...Z}
 
 let p2 = {x: 1, y: 2, a: 'foo', b: 'bar'}
 let {x: Int32, y: Int32, ...z} = p2
@@ -133,7 +133,7 @@ func head[X](list: List[X]): Option[X] = match list {
 object Foo {
   val bar: Fooish = 42
   
-  type alias Fooish = Int32
+  type Fooish alias Int32
   
   func boozle(x: Fooish): Fooish = bamboozle(x)
   
@@ -196,11 +196,11 @@ something similar to Kotlin's extensions? (https://kotlinlang.org/docs/reference
 alternative:
 
 ```
-interface Sum32[X] {
+type Sum32[X] interface {
   func sum(x: X): Int32
 }
 
-interface Magic32[X] {
+type Magic32[X] interface {
   func magic(x: X):> Int32
 }
 
