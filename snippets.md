@@ -100,13 +100,13 @@ enum Points {
 ### Function Types
 
 ```
-let addXAndY = func(p: Point2D): Int32 => p.x + p.y
+let addXAndY = func(p: Point2D): Int32 = p.x + p.y
 ```
 
 ```
 let list = [1,2,3]
 
-func sum(list: List[Int32]): Int32 => match (list) {
+func sum(list: List[Int32]): Int32 = match list {
   case Nil: 0
   case Cons(x, xs): x + sum(xs) 
 }
@@ -121,7 +121,7 @@ emptyList[Int32]
 ```
 
 ```
-func head[X](list: List[X]): Option[X] => match (list) {
+func head[X](list: List[X]): Option[X] = match list {
   case Nil: Option.none()
   case Cons(x, xs): Option.some(x) 
 }
@@ -177,17 +177,17 @@ myChannel.send!(42)
 ### Fancy name
 
 ```
-class Point2DWithSum(val x:Int32, val y:Int32) {
+class Point2DWithSum(val x: Int32, val y: Int32) {
   func sum() = x + y
 }
 
-class Point2DWithMagic(val x:Int32, val y:Int32) {
+class Point2DWithMagic(val x: Int32, val y: Int32) {
   func magic() = x * 2 + y * 2
 }
 
 func main() {
-  let lala = Point2DWithSum(42, 18);
-  let theMagic = (lala as Point2DWithMagic).magic();
+  let lala = Point2DWithSum(42, 18)
+  let theMagic = (lala as Point2DWithMagic).magic()
 }
 ```
 
@@ -197,19 +197,19 @@ alternative:
 
 ```
 interface Sum32[X] {
-  sum: (x: X) => Int32
+  func sum(x: X): Int32
 }
 
 interface Magic32[X] {
-  magic: (x: X) => Int32
+  func magic(x: X):> Int32
 }
 
 let point2DWithSum: Sum32[Point2D] = {
-  sum: (p: Point2D) => p.x + p.y
+  func sum(p: Point2D) => p.x + p.y
 }
 
 let point2DWithMagic = Magic32[Point2D] = {
-  magic: (p: Point2D) => p.x * 2 + p.y * 2
+  func magic(p: Point2D) => p.x * 2 + p.y * 2
 }
 
 // this checks that there are no overlapping behaviours in scope
@@ -219,8 +219,8 @@ use point2DWithSum as Sum32[Point2D]
 use point2DWithMagic as Magic32[Point2D]
 
 func main() {
-  let lala = {x:42, y:18};
-  let theSum = Sum32.sum(lala);
-  let theMagic = Magic32.magic(lala);
+  let lala = {x:42, y:18}
+  let theSum = Sum32.sum(lala)
+  let theMagic = Magic32.magic(lala)
 }
 ```
