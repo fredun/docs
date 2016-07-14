@@ -89,7 +89,7 @@ let {a: Int32 = x, b: Int32 = y, ...z} = p2
 ### Tagged unions (enums)
 
 ```
-enum Points {
+type Points enum {
   case Dim2(Point2D)
   case Dim3({x: Int32, y: Int32, z: Int32})
 }
