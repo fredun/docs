@@ -156,7 +156,7 @@ they need to be invoked using the `!` as a suffix.
 // all operations on the ref are impure!
 // the function passed to `update` _must_ be pure!
 
-let myMutableNumber: Ref[Int32] = mkRef(42)
+let myMutableNumber: Ref[Int32] = mkRef!(42)
 
 func incrAndGet!(ref: Ref[Int32]): Int32 {
   myMutableNumber.update!(func(x) => x + 1)
@@ -164,6 +164,14 @@ func incrAndGet!(ref: Ref[Int32]): Int32 {
   let number = myMutableNumber.read!()
   return number
 }
+```
+
+#### Channels
+
+```
+let myChannel: Channel[Int32] = mkChannel!()
+
+myChannel.send!(42)
 ```
 
 ### Fancy name
