@@ -167,7 +167,7 @@ func incrAndGet!(ref: Ref[Int32]): Int32 {
 #### Channels
 
 ```
-let myChannel: Channel[Int32] = Channel.open!()
+let myChannel = Channel[Int32].open!()
 
 myChannel.send!(42)
 ```
