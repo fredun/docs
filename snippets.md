@@ -167,7 +167,7 @@ func incrAndGet!(ref: Ref[Int32]): Int32 {
 #### Channels
 
 ```
-let myChannel: Channel[Int32] = mkChannel!()
+let myChannel: Channel[Int32] = Channel.open!()
 
 myChannel.send!(42)
 ```
@@ -203,11 +203,11 @@ type Magic32[X] interface {
 }
 
 let point2DWithSum: Sum32[Point2D] = {
-  func sum(p: Point2D) => p.x + p.y
+  func sum(p: Point2D) = p.x + p.y
 }
 
 let point2DWithMagic = Magic32[Point2D] = {
-  func magic(p: Point2D) => p.x * 2 + p.y * 2
+  func magic(p: Point2D) = p.x * 2 + p.y * 2
 }
 
 // this checks that there are no overlapping behaviours in scope
