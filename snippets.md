@@ -79,12 +79,10 @@ type AtLeast2D[Z] struct {x: Int32, y: Int32, ...Z}
 
 let p2 = {x: 1, y: 2, a: 'foo', b: 'bar'}
 let {x: Int32, y: Int32, ...z} = p2
-let {a: Int32 = x, b: Int32 = y, ...z} = p2
 ```
 
 (row polymorphism syntax oriented on https://github.com/sebmarkbage/ecmascript-rest-spread)
 
-*TODO:* Biggest problem at the moment, ambiguity between `:` as both a value-type separator and a key-value separator. Elm for instance has `:` as a value-type separator and `=` as a key-value separator. PureScipt has `::` as a value-type separator and `:` as a key-value separator.
 
 ### Tagged unions (enums)
 
@@ -108,7 +106,7 @@ let list = [1,2,3]
 
 func sum(list: List[Int32]): Int32 = match list {
   case Nil: 0
-  case Cons(x, xs): x + sum(xs) 
+  case Cons(x, xs): x + sum(xs)
 }
 ```
 
@@ -201,7 +199,7 @@ type Sum32[X] interface {
 }
 
 type Magic32[X] interface {
-  func magic(x: X):> Int32
+  func magic(x: X): Int32
 }
 
 let point2DWithSum: Sum32[Point2D] = {
